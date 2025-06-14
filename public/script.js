@@ -407,7 +407,7 @@ const bottomDoneObserver = new MutationObserver(mutations => {
       const token = localStorage.getItem('token');
       if (!token) return; // Skip if not logged in
 
-      fetch('http://lumaboard.onrender.com/api/tasks', {
+      fetch('https://lumaboard.onrender.com/api/tasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -433,7 +433,7 @@ function markCalendarDaysWithTasks() {
 
     const date = dayDiv.dataset.date;
 
-    fetch(`http://lumaboard.onrender.com/api/tasks/${date}`, {
+    fetch(`https://lumaboard.onrender.com/api/tasks/${date}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -485,7 +485,7 @@ calendarDays.forEach(day => {
     popupDayName.textContent = selectedDate;
     popupTaskList.innerHTML = 'Loading...';
 
-    fetch(`http://lumaboard.onrender.com/api/tasks/${selectedDate}`, {
+    fetch(`https://lumaboard.onrender.com/api/tasks/${selectedDate}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
