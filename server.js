@@ -16,6 +16,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));  // ✅ Apply CORS with headers
 app.use(express.json());
+app.use(express.static('public'));
 
 // ✅ MongoDB connection
 mongoose.connect(process.env.MONGO_URI).then(() => {
