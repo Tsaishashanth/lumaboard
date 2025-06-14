@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luma Board</title>
+  <link rel="icon" type="image/png" href="lumaboard logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+</head>
+<body>
+  <!-- Background dots -->
+  <div class="dots-background"></div>
+  <div class="dots-highlight"></div>
+
+<div style="padding:100px" class="parent-div">
+<div class="top-bar">
+  <div class="logo">
+    <img src="lumaboard logo.png" alt="Logo" class="logo-img">
+  </div>
+  <div class="title center-title">LumaBoard</div>
+
+  <div class="auth-buttons">
+    <button class="btn-signin" onclick="window.location.href='signin.html'">Sign In</button>
+    <button class="btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+  </div>
+</div>
+
+<!-- luma board section -->
+<div class="about-luma">
+  <div class="about-text">
+    <h1><span class="bold">Luma Board</span> is your personal assistant,</h1>
+    <h1><span class="bold">Built to plan</span> and track your daily goals.</h1>
+    <p class="subtext">An easy system for managing your day. Simple. Visual. Effective.</p>
+    <p class="subtext" style="margin-top: 3rem;">🔒 Note: Luma board works only if you log in.</p>
+  </div>
+</div>
+
+<!-- how it works section -->
+<div class="time-bar">How LumaBoard Works</div>
+
+<div class="how-it-works">
+  <div class="howitworks-box">
+    <h1>Planning</h1>
+    <p>Plan your daily tasks visually.</p>
+    <p style="font-family: 'Bricolage Grotesque', sans-serif;">
+      You can add tasks and time. Once done, you can drag the elements to the Done container.
+    </p>
+  </div>
+  <div class="howitworks-box">
+    <h1>Progress</h1>
+    <p>Track them with ease.</p>
+    <p style="font-family: 'Bricolage Grotesque', sans-serif;">
+      In this section, you will see which tasks are done and which are pending.
+    </p>
+  </div>
+  <div class="howitworks-box">
+    <h1>Calender</h1>
+    <p> view in calendar.</p>
+    <p style="font-family: 'Bricolage Grotesque', sans-serif;">
+      The Done tasks will be stored on the calendar under that specific day.
+    </p>
+  </div>
+</div>
+
+  <!-- Time Bar -->
+  <div class="time-bar">
+    <span id="dateTimeDisplay">Loading time...</span>
+  </div>
+
+  <!-- Boxes -->
+  <div class="box-row">
+    <div class="container">
+      <h1>Schedule</h1>
+      <p>Add your upcoming tasks here.</p>
+      <ul class="task-list"></ul>
+      <input type="text" placeholder="Add a task..." class="task-input" />
+      <button class="add-task-btn">Add</button>
+    </div>
+    <div class="container">
+      <h1>Time</h1>
+      <p>Track or set timers here.</p>
+      <ul class="task-list"></ul>
+      <input type="text" placeholder="Add a task..." class="task-input" />
+      <button class="add-task-btn">Add</button>
+
+    </div>
+    <div class="container">
+  <h1>Done</h1>
+  <p>Completed tasks will appear here.</p>
+  <ul class="task-list done-list"></ul>
+  <input type="text" placeholder="Add a task..." class="task-input" />
+  <button class="add-task-btn">Add</button>
+  </div>
+
+  <div class="progress-bar">
+  <span>Progress</span>
+</div>
+
+<div class="board" >
+    <div class= "done-bottom-container container">
+      <h2>Done</h2>
+      <div class="task-card">Completed Tasks</div>
+      <ul class="task-list done-list-bottom"></ul>
+    </div>
+
+    <div class="pending-bottom-container container">
+      <h2>Pending</h2>
+      <div class="task-card">Pending Tasks</div>
+      <ul class="task-list pending-list-bottom"></ul>
+    </div>
+
+    <div class="pending-bottom-container container">
+  <h2>Time</h2>
+  <div class="task-card">Time Taken</div>
+  <ul class="task-list" id="board-time-list"></ul>
+  <input type="text" placeholder="Add Time..." class="task-input" id="board-time-input" />
+  <button class="add-task-btn" id="board-time-add">Add</button>
+</div>
+
+    <div class="progress-bar">
+  <span>Calender</span>
+   </div>
+<!-- calender -->
+<div class="calendar-outline" id="calender">
+  <div class="calendar-row">
+    <div class="calendar-day">
+      <span class="day-name">Mon</span>
+      <span class="date-number">27</span>
+    </div>
+    <div class="calendar-day">
+      <span class="day-name">Tue</span>
+      <span class="date-number">28</span>
+    </div>
+    <div class="calendar-day">
+      <span class="day-name">Wed</span>
+      <span class="date-number">29</span>
+    </div>
+  </div>
+  <div class="calendar-row">
+    <div class="calendar-day">
+      <span class="day-name">Thu</span>
+      <span class="date-number">30</span>
+    </div>
+    <div class="calendar-day">
+      <span class="day-name">Fri</span>
+      <span class="date-number">31</span>
+    </div>
+    <div class="calendar-day">
+      <span class="day-name">Sat</span>
+      <span class="date-number">1</span>
+    </div>
+  </div>
+</div>
+<!-- Popup Modal -->
+<div id="calendar-popup" class="popup-container hidden">
+  <div class="popup-content">
+    <span class="close-btn">&times;</span>
+    <h3><span id="popup-day-name"></span></h3>
+    <ul id="popup-task-list"></ul>
+  </div>
+</div>
+<!-- footer starting -->
+<hr class="footer-divider" />
+
+<footer class="footer">
+  <div class="footer-content">
+    
+
+    <div class="footer-sections">
+      <div class="footer-section">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Contact Info</h4>
+        <p>Email: <a href="mailto:support@lumaboard.com">support@lumaboard.com</a></p>
+      </div>
+
+      <div class="footer-section">
+        <h4>Follow Us</h4>
+        <div class="footer-socials">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h4>Subscribe</h4>
+        <form class="subscribe-form">
+          <input type="email" placeholder="Your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <p class="footer-logo">© 2025 <strong>LumaBoard</strong>. All rights reserved.</p>
+  </div>
+</footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

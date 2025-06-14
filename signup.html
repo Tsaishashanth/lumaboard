@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+ <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    background:#0a0a0a;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Floating background colors */
+  body::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, #00ffe1 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, #ff00d4 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #00ffff 0%, transparent 40%);
+    animation: floatBG 20s linear infinite;
+    z-index: 0;
+    opacity: 0.2;
+  }
+
+  @keyframes floatBG {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-25%, -25%); }
+    100% { transform: translate(0, 0); }
+  }
+
+  form {
+    position: relative;
+    background: k; /* Black container */
+    padding: 3em 2.5em;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0, 255, 225, 0.3);
+    width: 350px;
+    max-width: 90%;
+    z-index: 1;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: #00ffe1;
+  }
+
+  input {
+    background: transparent;
+    border: 1px solid #00ffe1;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+    color: white;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  input:focus {
+    border-color: #ffffff;
+  }
+
+  button {
+    background-color: #00ffe1;
+    color: black;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #00e6cc;
+  }
+</style>
+</head>
+<body>
+  <form id="signupForm">
+    <h2>Sign Up</h2>
+    <input type="text" id="signup-username" name="username" placeholder="Username" required />
+    <input type="email" id="signup-email" name="email" placeholder="Email" required />
+    <input type="password" id="signup-password" name="password" placeholder="Password" required />
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('signup-username').value;
+      const email = document.getElementById('signup-email').value;
+      const password = document.getElementById('signup-password').value;
+
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password })
+        });
+
+        const data = await res.json();
+        alert(data.message || data.error);
+        window.location.href = 'signin.html'; // Redirect to sign in page after successful signup
+      } catch (err) {
+        alert('Something went wrong.');
+      }
+    });
+  </script>
+</body>
+</html>
