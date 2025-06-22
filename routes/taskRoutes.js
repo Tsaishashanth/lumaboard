@@ -24,6 +24,9 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
+// ✅ GET /api/tasks - Fetch all tasks for the logged-in user
+
+
 
 // ✅ GET /api/tasks/:date - Get tasks for a specific date (only for logged-in user)
 router.get('/:date', authMiddleware, async (req, res) => {
@@ -69,5 +72,17 @@ router.delete('/:id', authMiddleware, async (req, res) => {
   }
 });
 
+// ✅ GET /api/tasks - Get all tasks for the logged-in user
+router.get('/', authMiddleware, async (req, res) => {
+  try {
+    const tasks = await Task.find({ user: req.user.id });
+    res.json(tasks);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch tasks' });
+  }
+});
+
+
 // ✅ Export once at the end
 module.exports = router;
+

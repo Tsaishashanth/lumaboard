@@ -92,36 +92,6 @@
 }
 
 /* Responsive styles for screens smaller than 480px */
-@media (max-width: 480px) {
-  .task-container {
-    max-width: 95%;
-    margin: 10px auto;
-    padding: 8px;
-  }
-
-  .task-list li {
-    flex-direction: column; /* stack content vertically */
-    align-items: flex-start;
-    font-size: 16px;
-    padding: 10px;
-  }
-
-  /* Place buttons below task text and center them */
-  .task-buttons {
-    justify-content: center;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  /* Make buttons smaller and stack if needed */
-  .task-buttons button {
-    flex: 1 1 45%;  /* almost half width each */
-    min-width: auto;
-    font-size: 15px;
-    padding: 10px 0;
-  }
-}
-
 .logo-img {
   height: 40px;
   /* or width: 100px; depending on your layout */
@@ -167,7 +137,6 @@ body {
   display: flex;
   gap: 1rem;
 }
-
 .btn-signin,
 .btn-signup {
   padding: 8px 16px;
@@ -879,4 +848,109 @@ body {
 /* for horizantal line at bottom */
 body {
   overflow-x: hidden;
+}
+
+/* adding media queries */
+@media (max-width: 768px) {
+  html,body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  .parent-div{
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  max-width:768px;
+  width:100%;
+  
+  }
+  
+  .top-bar {
+  display: flex;                 /* important for layout */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 376.95px;
+  height: 58.6px;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    margin:0;
+    
+  }
+
+  .auth-buttons {
+  display: flex;
+  flex-direction: row; /* side by side */
+  /* gap: 1rem; */
+  }
+
+  .btn-signup,
+  .btn-signin {
+    padding: 6px 10px;
+    font-size: 1rem;
+    white-space: nowrap;
+    
+  }
+
+  .center-title {
+    font-size: 1.5rem;
+    top: 65px;
+  }
+
+  .progress-bar {
+    width: 35%;
+  }
+
+  .time-bar{
+    /* height:30px; */
+    align-items:center;
+    font-size: 1rem;
+  }
+
+  .container{
+    max-width:33%;
+    flex-direction: column;
+  }
+  .howitworks-box {
+    max-width:80%;
+  }
+  
+  .done-bottom-container {
+    max-width: 83%;
+    flex-direction: column;
+  }
+  .pending-bottom-container {
+    max-width: 83%;
+  }
+  .board{
+    flex-direction:column;
+    max-width:40%
+  }
+  .calendar-outline{
+    display:flex;
+    flex-direction: row;
+    max-width:100%;
+    align-items:center;
+    gap:2rem;
+    margin-left:0;
+  }
+  .calendar-row {
+    flex-direction:column;
+    align-items: space-between;
+    gap: 3rem;
+    width:80%;
+  }
+  .subscribe-form input {
+    width:95%;
+  }
 }
