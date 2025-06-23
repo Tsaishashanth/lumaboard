@@ -422,38 +422,9 @@ const bottomDoneObserver = new MutationObserver(mutations => {
 });
 bottomDoneObserver.observe(doneListBottom, { childList: true });
 
-// monitor the bottom pending list
-const pendingListBottom = document.querySelector('.pending-list-bottom');
 
-const pendingObserver = new MutationObserver(mutations => {
-  const todayDate = new Date().toISOString().split('T')[0];
-  const token = localStorage.getItem('token');
-  if (!token) return;
 
-  mutations.forEach(mutation => {
-    mutation.addedNodes.forEach(node => {
-      let li = node.querySelector ? node.querySelector('li') : null;
-      if (!li && node.tagName === 'LI') li = node;
-      if (!li) return;
 
-      let title = li.textContent.trim();
-      title = title.replace(/^\d+\.\s*/, '');
-      if (!title) return;
-
-      // Save the task as not completed
-      fetch('https://lumaboard.onrender.com/api/tasks', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ title, date: todayDate, completed: false })
-      }).catch(err => console.error('Error saving pending task:', err));
-    });
-  });
-});
-
-pendingObserver.observe(pendingListBottom, { childList: true });
 // refreshing the pending tasks bug issue
 
 
