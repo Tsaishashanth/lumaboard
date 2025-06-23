@@ -460,10 +460,10 @@ window.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('token');
     if (!token) return;
 
-    fetch('https://lumaboard.onrender.com/api/tasks', {
-      method: 'GET',
+    const todayDate = new Date().toISOString().split('T')[0];
+
+    fetch(`https://lumaboard.onrender.com/api/tasks/${todayDate}`, {
       headers: {
-        'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }
     })
@@ -483,8 +483,9 @@ window.addEventListener('DOMContentLoaded', () => {
         });
       })
       .catch(err => console.error('Error loading pending tasks:', err));
-  }, 300); // this waits for 300 milliseconds
+  }, 300);
 });
+
 
 // --- Mark Calendar Days With Tasks ---
 function markCalendarDaysWithTasks() {
@@ -504,15 +505,18 @@ function markCalendarDaysWithTasks() {
     })
       .then(res => res.json())
       .then(tasks => {
-        if (tasks.length > 0) {
-          indicator = document.createElement('span');
-          indicator.className = 'task-indicator';
-          indicator.textContent = '•';
-          indicator.style.color = '#4caf50';
-          indicator.style.marginLeft = '4px';
-          dayDiv.appendChild(indicator);
-        }
-      });
+  const hasDoneTasks = tasks.some(task => task.completed);
+
+  if (hasDoneTasks) {
+    indicator = document.createElement('span');
+    indicator.className = 'task-indicator';
+    indicator.textContent = '•';
+    indicator.style.color = '#4caf50';
+    indicator.style.marginLeft = '4px';
+    dayDiv.appendChild(indicator);
+  }
+})
+
   });
 }
 
