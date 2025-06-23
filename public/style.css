@@ -905,7 +905,7 @@ body {
   }
 
   .progress-section-bar {
-    width: 37%;
+    width: 30%;
   }
 
   .calender-bar {
@@ -913,17 +913,17 @@ body {
   }
 
   .time-bar{
-    height:30px;
+    /* height:30px; */
     align-items:center;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 
   .container{
-    max-width:33%;
+    max-width:31%;
     flex-direction: column;
   }
   .howitworks-box {
-    max-width:80%;
+    max-width:79%;
   }
   
   .done-bottom-container {
@@ -935,7 +935,7 @@ body {
   }
   .board{
     flex-direction:column;
-    max-width:40%
+    max-width:35%
   }
   .calendar-outline{
     display:flex;
