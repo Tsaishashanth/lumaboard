@@ -455,36 +455,6 @@ const pendingObserver = new MutationObserver(mutations => {
 
 pendingObserver.observe(pendingListBottom, { childList: true });
 // refreshing the pending tasks bug issue
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-
-    const todayDate = new Date().toISOString().split('T')[0];
-
-    fetch(`https://lumaboard.onrender.com/api/tasks/${todayDate}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    })
-      .then(res => res.json())
-      .then(tasks => {
-        tasks.forEach(task => {
-          if (!task.completed) {
-            const li = document.createElement('li');
-            li.textContent = task.title;
-            li.dataset.taskId = task._id;
-
-            const pendingList = document.querySelector('.pending-list-bottom');
-            if (pendingList) {
-              pendingList.appendChild(li);
-            }
-          }
-        });
-      })
-      .catch(err => console.error('Error loading pending tasks:', err));
-  }, 300);
-});
 
 
 // --- Mark Calendar Days With Tasks ---
@@ -505,18 +475,15 @@ function markCalendarDaysWithTasks() {
     })
       .then(res => res.json())
       .then(tasks => {
-  const hasDoneTasks = tasks.some(task => task.completed);
-
-  if (hasDoneTasks) {
-    indicator = document.createElement('span');
-    indicator.className = 'task-indicator';
-    indicator.textContent = '•';
-    indicator.style.color = '#4caf50';
-    indicator.style.marginLeft = '4px';
-    dayDiv.appendChild(indicator);
-  }
-})
-
+        if (tasks.length > 0) {
+          indicator = document.createElement('span');
+          indicator.className = 'task-indicator';
+          indicator.textContent = '•';
+          indicator.style.color = '#4caf50';
+          indicator.style.marginLeft = '4px';
+          dayDiv.appendChild(indicator);
+        }
+      });
   });
 }
 
