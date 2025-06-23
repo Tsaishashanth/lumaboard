@@ -34,7 +34,6 @@ router.get('/:date', authMiddleware, async (req, res) => {
     const tasks = await Task.find({
       user: req.user.id,
       date: req.params.date,
-      completed:true
     });
 
     res.json(tasks);
