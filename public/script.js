@@ -482,7 +482,7 @@ calendarDays.forEach(day => {
     if (!token) return;
 
     if (popup.classList.contains('show') && activeDay === selectedDate) {
-      popup.classList.remove('show');
+      popup.classList.remove('show');id
       activeDay = null;
       return;
     }
